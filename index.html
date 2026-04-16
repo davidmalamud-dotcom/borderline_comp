@@ -29,6 +29,110 @@
       line-height: 1.45;
     }
 
+    body.is-locked {
+      overflow: hidden;
+    }
+
+    body.is-locked > *:not(.report-lock) {
+      filter: blur(14px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .report-lock {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
+    }
+
+    body.is-locked .report-lock {
+      display: flex;
+    }
+
+    .report-lock-card {
+      width: min(100%, 480px);
+      padding: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: #101010;
+      color: var(--white);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .report-lock-card h2 {
+      margin: 0 0 12px;
+      color: var(--white);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 0.94;
+    }
+
+    .report-lock-card p {
+      margin: 0 0 22px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1rem;
+    }
+
+    .report-lock-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .report-lock-form input {
+      width: 100%;
+      min-height: 52px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 0;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--white);
+      font: inherit;
+    }
+
+    .report-lock-form input::placeholder {
+      color: rgba(255, 255, 255, 0.42);
+    }
+
+    .report-lock-form button,
+    .report-lock-exit {
+      min-height: 52px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 0;
+      background: var(--red);
+      color: var(--white);
+      font: inherit;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .report-lock-error {
+      min-height: 1.2em;
+      color: #ff9a9a;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .report-lock-toolbar {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 40;
+    }
+
+    .report-lock-exit {
+      min-height: auto;
+      padding: 10px 12px;
+      font-size: 0.72rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+    }
+
     a { color: inherit; }
 
     .page {
@@ -484,6 +588,22 @@
   </style>
 </head>
 <body>
+  <div class="report-lock" id="report-lock" aria-hidden="true">
+    <div class="report-lock-card">
+      <h2>Client Review</h2>
+      <p>Enter the password to open the Borderline competitor report.</p>
+      <form class="report-lock-form" id="report-lock-form">
+        <input id="report-lock-input" type="password" placeholder="Password" autocomplete="current-password">
+        <button type="submit">Open Report</button>
+        <div class="report-lock-error" id="report-lock-error"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="report-lock-toolbar">
+    <button class="report-lock-exit" id="report-lock-exit" type="button">Lock Report</button>
+  </div>
+
   <header class="hero">
     <div class="page">
       <div class="eyebrow">Competitor messaging report / April 15, 2026</div>
@@ -1275,5 +1395,53 @@
   <footer class="page footer-note">
     Prepared for Borderline Supply lead-generation planning. Screenshots captured April 15, 2026. Competitor messaging should be rechecked before media launch because ecommerce home pages, popups, and promotional claims can change frequently.
   </footer>
+  <script>
+    const REPORT_LOCK_KEY = "borderline_comp_unlock";
+    const REPORT_PASSWORD_HASH = "4c5e0a37811f99391de8adc7c0146f3a446b9f4977718102970e3eae5de49310";
+
+    const lockForm = document.getElementById("report-lock-form");
+    const lockInput = document.getElementById("report-lock-input");
+    const lockError = document.getElementById("report-lock-error");
+    const lockExit = document.getElementById("report-lock-exit");
+
+    function setLockedState(locked) {
+      document.body.classList.toggle("is-locked", locked);
+      if (locked) {
+        lockInput.value = "";
+        lockError.textContent = "";
+        setTimeout(() => lockInput.focus(), 30);
+      }
+    }
+
+    async function sha256(input) {
+      const bytes = new TextEncoder().encode(input);
+      const digest = await crypto.subtle.digest("SHA-256", bytes);
+      return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    const isUnlocked = sessionStorage.getItem(REPORT_LOCK_KEY) === "true";
+    setLockedState(!isUnlocked);
+
+    lockForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const candidate = lockInput.value.trim();
+      if (!candidate) {
+        lockError.textContent = "Enter a password.";
+        return;
+      }
+      const candidateHash = await sha256(candidate);
+      if (candidateHash === REPORT_PASSWORD_HASH) {
+        sessionStorage.setItem(REPORT_LOCK_KEY, "true");
+        setLockedState(false);
+        return;
+      }
+      lockError.textContent = "Incorrect password.";
+    });
+
+    lockExit.addEventListener("click", () => {
+      sessionStorage.removeItem(REPORT_LOCK_KEY);
+      setLockedState(true);
+    });
+  </script>
 </body>
 </html>
