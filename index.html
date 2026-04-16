@@ -1,0 +1,1279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Borderline Supply Competitor Messaging Report</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Cpath d='M10 46h44v8H10zM10 10h14v28H10zM30 10h24v8H30zM30 24h24v8H30z' fill='%23E10600'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --red: #E10600;
+      --black: #000000;
+      --dark: #1A1A1A;
+      --mid: #666666;
+      --light: #F5F5F5;
+      --line: #DDDDDD;
+      --white: #FFFFFF;
+      --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--dark);
+      line-height: 1.45;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 72vh;
+      display: grid;
+      align-items: end;
+      padding: 72px 0 44px;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.94), rgba(0,0,0,0.78)),
+        url("competitor-messaging-assets/borderline.png") center / cover no-repeat;
+      color: var(--white);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: rgba(255,255,255,0.74);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      background: var(--red);
+    }
+
+    h1 {
+      max-width: 940px;
+      margin: 0;
+      font-size: clamp(3rem, 6.6vw, 6.7rem);
+      line-height: 0.88;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 28px 0 0;
+      color: rgba(255,255,255,0.82);
+      font-size: clamp(1.05rem, 2vw, 1.36rem);
+      font-weight: 500;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav .page {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 14px 0;
+    }
+
+    .nav a {
+      white-space: nowrap;
+      color: var(--mid);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    section {
+      padding: 76px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-title {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.38fr) minmax(0, 1fr);
+      gap: 40px;
+      margin-bottom: 34px;
+      align-items: start;
+    }
+
+    .kicker {
+      color: var(--red);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--black);
+      font-size: clamp(2.1rem, 4vw, 4.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      color: var(--black);
+      font-size: 1.2rem;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    p { margin: 0; }
+
+    .lead {
+      max-width: 840px;
+      color: var(--dark);
+      font-size: clamp(1.15rem, 2.2vw, 1.7rem);
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      font-weight: 700;
+    }
+
+    .muted { color: var(--mid); }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .stat {
+      min-height: 190px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--light);
+    }
+
+    .stat strong {
+      display: block;
+      margin-bottom: 18px;
+      color: var(--red);
+      font-size: clamp(2.2rem, 5vw, 5rem);
+      line-height: 0.82;
+      letter-spacing: -0.06em;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--black);
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .matrix {
+      display: grid;
+      gap: 14px;
+    }
+
+    .competitor {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.32fr) minmax(0, 1fr) minmax(240px, 0.34fr);
+      gap: 24px;
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .competitor > * {
+      min-width: 0;
+    }
+
+    .competitor:first-child { border-top: 0; }
+
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 8px;
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      color: var(--red);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .quote {
+      margin: 0 0 12px;
+      color: var(--black);
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .note {
+      color: var(--mid);
+      font-size: 0.94rem;
+    }
+
+    .takeaway {
+      padding-left: 18px;
+      border-left: 4px solid var(--red);
+      color: var(--dark);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--mid);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .pattern-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .swot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .swot-card {
+      display: grid;
+      gap: 18px;
+      min-height: 330px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .swot-card strong {
+      color: var(--red);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .swot-card ul {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .swot-card li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--mid);
+      font-size: 0.96rem;
+    }
+
+    .swot-card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 7px;
+      height: 7px;
+      background: var(--red);
+    }
+
+    .pattern {
+      min-height: 240px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .pattern .number {
+      display: block;
+      margin-bottom: 22px;
+      color: var(--red);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      background: var(--light);
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      object-position: top center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    figcaption {
+      padding: 14px 16px 16px;
+      color: var(--mid);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .recommendations {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .red-panel {
+      padding: 34px;
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .red-panel h2,
+    .red-panel h3 { color: var(--white); }
+
+    .red-panel p { color: rgba(255,255,255,0.82); }
+
+    .message-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .message {
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: var(--light);
+    }
+
+    .message b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--black);
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .source-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 24px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .source-list li {
+      color: var(--mid);
+      font-size: 0.9rem;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .notes-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .note-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--light);
+    }
+
+    .note-card b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--black);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .source-list a {
+      color: var(--black);
+      font-weight: 800;
+      text-decoration-color: var(--red);
+      text-underline-offset: 3px;
+    }
+
+    .footer-note {
+      padding: 36px 0 60px;
+      color: var(--mid);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 860px) {
+      .page { width: min(100% - 28px, 1180px); }
+      .hero { min-height: 64vh; padding: 54px 0 34px; }
+      .section-title,
+      .competitor,
+      .recommendations,
+      .notes-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .grid-3,
+      .pattern-grid,
+      .swot-grid,
+      .gallery,
+      .source-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      .nav { display: none; }
+      .hero { min-height: auto; color: var(--black); background: var(--white); }
+      .hero p { color: var(--dark); }
+      section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="page">
+      <div class="eyebrow">Competitor messaging report / April 15, 2026</div>
+      <h1>What gym equipment competitors are saying</h1>
+      <p>Across the category, most competitors still sound the same. They lead with inventory, price, savings, and logistics. Borderline has a chance to sound different by talking less like a warehouse and more like the team that helps a gym owner actually get the job done.</p>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Report navigation">
+    <div class="page">
+      <a href="#summary">Summary</a>
+      <a href="#swot">SWOT</a>
+      <a href="#client-notes">Client Notes</a>
+      <a href="#matrix">Competitors</a>
+      <a href="#patterns">Patterns</a>
+      <a href="#whitespace">White Space</a>
+      <a href="#story-options">Story Options</a>
+      <a href="#creative">Creative Direction</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="#paid-social">Paid/Social</a>
+      <a href="#sources">Sources</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="summary">
+      <div class="page">
+        <div class="section-title">
+          <div class="kicker">Executive read</div>
+          <div>
+            <h2>The market sells equipment. Borderline can sell relief.</h2>
+          </div>
+        </div>
+
+        <p class="lead">Competitors are mostly competing on what is easy to show: rows of machines, discounts off retail, warehouse size, refurbishment, financing, delivery, and brand logos. Very few speak directly to the stress points of a gym owner who has to open, expand, replace, liquidate, or move equipment without wasting cash or weeks.</p>
+
+        <div class="grid-3" style="margin-top: 34px;">
+          <div class="stat">
+            <strong>70%</strong>
+            <span>Common savings anchor used by 360, Primo-style category players, Bolt, and marketplace messaging.</span>
+          </div>
+          <div class="stat">
+            <strong>60K</strong>
+            <span>Pound4Pound leads with large warehouse proof and broad inventory authority.</span>
+          </div>
+          <div class="stat">
+            <strong>80%</strong>
+            <span>Borderline's internal model advantage: sales close before equipment moves, giving the brand a true speed story.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="swot">
+      <div class="page">
+        <div class="section-title">
+          <div class="kicker">Strategic SWOT</div>
+          <div>
+            <h2>Borderline's position against the category</h2>
+          </div>
+        </div>
+
+        <div class="swot-grid">
+          <div class="swot-card">
+            <div>
+              <strong>Strengths</strong>
+              <h3>What Borderline can credibly own</h3>
+            </div>
+            <ul>
+              <li>Asset-light model gives Borderline a real operational speed story instead of another warehouse/inventory story.</li>
+              <li>Houston base plus Mexico-facing navigation creates a cross-border positioning angle competitors are not leading with.</li>
+              <li>The company can speak to both sides of the deal: gym owners who need equipment and sellers who need equipment moved.</li>
+              <li>Internal proof point that most sales close before equipment moves supports a stronger "market in-place" message.</li>
+            </ul>
+          </div>
+
+          <div class="swot-card">
+            <div>
+              <strong>Weaknesses</strong>
+              <h3>What may hold the brand back</h3>
+            </div>
+            <ul>
+              <li>Current public messaging is very minimal, so the brand advantage is not yet obvious to cold traffic.</li>
+              <li>Competitors can look larger because they show more inventory, more categories, more reviews, and more warehouse proof.</li>
+              <li>Without stronger condition/process language, buyers may default to competitors promising inspected, tested, certified, or refurbished equipment.</li>
+              <li>Paid social presence appears lighter than Bolt's current Meta lead-gen activity.</li>
+            </ul>
+          </div>
+
+          <div class="swot-card">
+            <div>
+              <strong>Opportunities</strong>
+              <h3>Where the campaign can win</h3>
+            </div>
+            <ul>
+              <li>Own the "operator-side partner" lane: help gym owners protect cash, time, space, and member experience.</li>
+              <li>Turn lead gen into a useful diagnostic: "Send us the list. We'll tell you what moves."</li>
+              <li>Build bilingual Houston/Mexico creative around practical cross-border buying and selling, not generic Spanish translation.</li>
+              <li>Use transparency as creative: condition truth, expected timeline, move complexity, and realistic market value.</li>
+            </ul>
+          </div>
+
+          <div class="swot-card">
+            <div>
+              <strong>Threats</strong>
+              <h3>What competitors can use against us</h3>
+            </div>
+            <ul>
+              <li>Local competitors like Bolt can compete directly on Houston warehouse trust and simple quote-based Meta ads.</li>
+              <li>National players can outspend, out-SEO, and out-inventory Borderline on broad used commercial gym equipment searches.</li>
+              <li>Marketplace competitors can make selection feel easier with searchable inventory, alerts, financing, and certified pre-owned labels.</li>
+              <li>If Borderline leads only with "quality used gym equipment," it blends into the same price-and-inventory category language.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="client-notes">
+      <div class="page">
+        <div class="section-title">
+          <div class="kicker">Client field notes</div>
+          <div>
+            <h2>What the meeting clarified</h2>
+          </div>
+        </div>
+
+        <div class="notes-grid">
+          <div class="red-panel">
+            <h2>The win is not "cheap."</h2>
+            <p style="margin-top: 18px;">The transcript makes the core point much clearer. Borderline wins when the customer feels two things at once. First, the process was easy. Second, the team understood how big the moment was. For a lot of customers, this is not just equipment. It is the start of a business, a new chapter, or a major bet on themselves.</p>
+            <p style="margin-top: 16px;">Just as important, the worst-fit customer is usually the one chasing the cheapest possible deal while still expecting everything to feel brand new. That is a useful warning. Borderline should not build its brand around being the cheapest option in the market.</p>
+          </div>
+
+          <div class="notes-stack">
+            <div class="note-card">
+              <b>Core positive experience</b>
+              <p class="muted">The strongest success outcome is simple: "I needed a gym and then it showed up." Efficiency, clarity, and taking work off the customer's plate are the most memorable functional benefits.</p>
+            </div>
+            <div class="note-card">
+              <b>Emotional payoff</b>
+              <p class="muted">Clients are often starting a new chapter of life. The team believes the best experiences happen when customers feel trust, confidence, and a real sense that Borderline understood what was at stake.</p>
+            </div>
+            <div class="note-card">
+              <b>Biggest current gaps</b>
+              <p class="muted">Follow-up is inconsistent. Reviews, testimonials, photos, newsletters, email nurture, and post-sale retention are happening manually or not at all. CRM structure, automation, and communication hygiene are urgent operational priorities.</p>
+            </div>
+            <div class="note-card">
+              <b>Biggest customer fear</b>
+              <p class="muted">The first fear is legitimacy: "Are you a scam?" The second fear is condition. That means proof, references, visual verification, and social validation matter before any pricing conversation lands.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pattern-grid" style="margin-top: 34px;">
+          <div class="pattern">
+            <span class="number">Workflow Priority</span>
+            <h3>Fix capture, follow-up, and retention.</h3>
+              <p class="muted">The transcript is very clear here. Leads, texts, invoices, web forms, reviews, and follow-up are split across personal phones, QuickBooks, web chat, and manual workarounds. Marketing only scales if those touchpoints are cleaned up first.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">Content Priority</span>
+            <h3>Make the gym owner the hero.</h3>
+            <p class="muted">Install photos alone are not enough. Borderline has an opening to document the owner, the build-out, the transformation, and the "before to after" story in a way competitors largely do not.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">Identity Priority</span>
+            <h3>Mexico is not only a market. It is part of the brand.</h3>
+            <p class="muted">The team sees bilingual and cross-border capability as both a growth path and a real identity differentiator. That should be treated as a deliberate brand asset, not a side translation layer.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">Proof Priority</span>
+            <h3>References beat claims.</h3>
+              <p class="muted">One of the strongest stories in the meeting was a buyer independently reaching out to an existing customer through Instagram, then wiring funds. That is a big clue. Social proof needs to become part of the sales process, not an afterthought.</p>
+          </div>
+        </div>
+
+        <div class="message-list" style="margin-top: 34px;">
+          <div class="message">
+            <b>Client-reported competitor watchlist</b>
+            <p class="muted">The meeting highlighted CTX as especially aggressive on Texas advertising around steep discounts, SuperFitness as the scale-and-social benchmark, Global Fitness as a large-scale operator associated with Planet Fitness lot flows and Mexico resale, and Commercial Fitness Concepts as an older legacy player. These are useful field notes and should be read alongside the public-site review, not as fully verified market facts.</p>
+          </div>
+          <div class="message">
+            <b>Client-reported sourcing priority</b>
+            <p class="muted">The team believes the highest-margin growth comes from better sourcing: large lots, direct relationships, installers, reps, acquisition managers, and management companies. That is more central to growth than squeezing more yield out of low-margin refurbishing work.</p>
+          </div>
+          <div class="message">
+            <b>Client-reported content opportunity</b>
+            <p class="muted">Rare equipment, gritty logistics, founder reality, and behind-the-scenes footage consistently outperform polished sales posts because they feel real. That supports a brand system that is professional without being sterile.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="matrix">
+      <div class="page">
+        <div class="section-title">
+          <div class="kicker">Competitor matrix</div>
+          <div>
+            <h2>Messaging lanes by brand</h2>
+          </div>
+        </div>
+
+        <div class="matrix">
+          <article class="competitor">
+            <div>
+              <h3>Borderline Supply</h3>
+              <span class="tag">Baseline</span>
+            </div>
+            <div>
+              <p class="quote">"We source and sell quality used gym equipment."</p>
+              <p class="note">Current site language is functional and minimal. Navigation already signals the stronger strategic direction: Gym Owners, Wholesellers, Ventas MX.</p>
+              <div class="pills">
+                <span class="pill">Used equipment</span>
+                <span class="pill">Houston</span>
+                <span class="pill">Mexico-facing</span>
+              </div>
+            </div>
+            <p class="takeaway">Opportunity: make the business model easier to understand. Borderline is stronger when it explains how it gets buyers, sellers, timing, logistics, and trust lined up, not when it settles for generic used-equipment language.</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>360 Fitness Solutions</h3>
+              <span class="tag">Discount authority</span>
+            </div>
+            <div>
+              <p class="quote">Commercial gym equipment, remanufactured machines, gym packages, installation, worldwide shipping, and "up to 70% off."</p>
+              <p class="note">Their language is broad and ecommerce-led: shop, buy, sell, remanufactured, wholesale, custom quote. A Spanish-language signal appears in the top bar, but it is not the brand center.</p>
+              <div class="pills">
+                <span class="pill">70% off</span>
+                <span class="pill">Remanufactured</span>
+                <span class="pill">Worldwide shipping</span>
+              </div>
+            </div>
+            <p class="takeaway">Strong rational proof, weak emotional distinction. Borderline should not out-discount this. It should out-position with trust, speed, and operator empathy.</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>Primo Fitness</h3>
+              <span class="tag">Scale + selection</span>
+            </div>
+            <div>
+              <p class="quote">"#1 New and Used Fitness Equipment Provider" with new and used gym equipment for sale worldwide.</p>
+              <p class="note">Primo leans into category leadership, global availability, and wide selection from treadmills to strength machines.</p>
+              <div class="pills">
+                <span class="pill">#1 claim</span>
+                <span class="pill">Worldwide</span>
+                <span class="pill">New + used</span>
+              </div>
+            </div>
+            <p class="takeaway">Primo's message is safe and massive. Borderline can feel sharper by sounding like the person who knows what a gym owner is trying to get done this week.</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>UsedGymEquipment.com</h3>
+              <span class="tag">Trusted supplier</span>
+            </div>
+            <div>
+              <p class="quote">Commercial used exercise equipment from a trusted supplier with wholesale pricing, fast delivery, and expert support.</p>
+              <p class="note">The site also claims long tenure, serving Los Angeles since 1989, and emphasizes new/remanufactured equipment from recognizable fitness brands.</p>
+              <div class="pills">
+                <span class="pill">Wholesale pricing</span>
+                <span class="pill">Fast delivery</span>
+                <span class="pill">Since 1989</span>
+              </div>
+            </div>
+            <p class="takeaway">Their proof is tenure and support. Borderline can counter with modern flow: source, inspect, market in-place, deposit, move only when ready.</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>Bolt Pre-Owned</h3>
+              <span class="tag">Houston proof</span>
+            </div>
+            <div>
+              <p class="quote">Certified used and refurbished gym equipment inspected, cleaned, and tested in a Houston warehouse.</p>
+              <p class="note">Bolt's pre-owned sub-brand is a direct local competitor for Houston searches. The message is clean, practical, and trust-oriented: local pickup, fast shipping, commercial-grade equipment.</p>
+              <div class="pills">
+                <span class="pill">Houston warehouse</span>
+                <span class="pill">Inspected</span>
+                <span class="pill">Cleaned + tested</span>
+              </div>
+            </div>
+            <p class="takeaway">Bolt owns conventional reassurance. Borderline needs a less warehouse-centered story: "we find the right equipment before it becomes somebody else's storage problem."</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>Pound4Pound</h3>
+              <span class="tag">Warehouse + relationship</span>
+            </div>
+            <div>
+              <p class="quote">Commercial-grade pre-owned/refurbished fitness equipment, 60,000 square feet of warehouse space, domestic and international sales.</p>
+              <p class="note">Unlike many competitors, Pound4Pound includes relational language: understanding needs, explaining options, aligning with expectations, personable partnership, and responsive communication.</p>
+              <div class="pills">
+                <span class="pill">60,000 sqft</span>
+                <span class="pill">Worldwide</span>
+                <span class="pill">Partnership</span>
+              </div>
+            </div>
+            <p class="takeaway">This is the closest competitor to Borderline's "on your side" territory. Borderline can make that more operational and owner-specific.</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>Pro Gym Supply</h3>
+              <span class="tag">Honesty + deal</span>
+            </div>
+            <div>
+              <p class="quote">"We Know Gym Equipment" plus premium commercial-grade used equipment, better deals, agility, honesty, financing, customization, and buyback.</p>
+              <p class="note">Pro Gym is unusually candid about the category: many dealers show off warehouses, while much inventory sits. They frame themselves as efficient, adaptable, honest, and customer-matched.</p>
+              <div class="pills">
+                <span class="pill">Better deal</span>
+                <span class="pill">Agile model</span>
+                <span class="pill">Honesty</span>
+              </div>
+            </div>
+            <p class="takeaway">Pro Gym validates the "Honest Machine" territory. Borderline can borrow the candor but make it more direct, bilingual, and Texas/Mexico specific.</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>Carolina Fitness Equipment</h3>
+              <span class="tag">Service ecosystem</span>
+            </div>
+            <div>
+              <p class="quote">New and used commercial fitness equipment with free consultation, gym planning, service and repair, financing, warehouse tour, and customization.</p>
+              <p class="note">Messaging is utility-led and service-dense. The brand offers many helpful paths, but the story is dispersed across navigation and promo modules.</p>
+              <div class="pills">
+                <span class="pill">Consultation</span>
+                <span class="pill">Gym planning</span>
+                <span class="pill">Service + repair</span>
+              </div>
+            </div>
+            <p class="takeaway">They show the power of services as lead hooks. Borderline should translate service into campaign offers: "Send us your equipment list" or "Get a sell-through plan."</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>PreOwnedGym.com</h3>
+              <span class="tag">Marketplace</span>
+            </div>
+            <div>
+              <p class="quote">"#1 Used Gym Equipment Marketplace" with verified dealers nationwide and 50-70% off retail prices.</p>
+              <p class="note">The site frames the category as searchable inventory plus programs: certified pre-owned, trade-in, appraisal, shipping quote, financing, wish list alerts.</p>
+              <div class="pills">
+                <span class="pill">Marketplace</span>
+                <span class="pill">50-70% off</span>
+                <span class="pill">Trade-in tools</span>
+              </div>
+            </div>
+            <p class="takeaway">Marketplace language is efficient but impersonal. Borderline's advantage is accountable human mediation, not endless listings.</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>Global Fitness</h3>
+              <span class="tag">Remanufactured scale</span>
+            </div>
+            <div>
+              <p class="quote">"Top-Quality Used Gym Equipment" from a trusted source of new, refurbished, and used equipment, with "like new" product, customization, and savings claims.</p>
+              <p class="note">Global Fitness combines scale, remanufacturing, testimonials, sale language, custom builds, gym-owner resources, and support promises. The site blends ecommerce depth with broad reassurance around price, warranty, and service.</p>
+              <div class="pills">
+                <span class="pill">50% savings</span>
+                <span class="pill">Like new</span>
+                <span class="pill">Custom equipment</span>
+              </div>
+            </div>
+            <p class="takeaway">This is a category heavyweight. Borderline should not try to imitate its scale story. The better move is to sound faster, closer, and more operator-specific than a national remanufacturing machine.</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>CTX Home Gyms</h3>
+              <span class="tag">Discount + consultation</span>
+            </div>
+            <div>
+              <p class="quote">"Discount commercial gym equipment" for any space and budget, with home bundles, commercial bundles, delivery, installation, maintenance, warranties, and consultation.</p>
+              <p class="note">CTX leads with discount language and broad service coverage. It also gives "design a home gym" and "request a consultation" clear prominence, which turns service into an active conversion path.</p>
+              <div class="pills">
+                <span class="pill">Discount commercial</span>
+                <span class="pill">Request consultation</span>
+                <span class="pill">Remanufactured</span>
+              </div>
+            </div>
+            <p class="takeaway">CTX validates the value of service-led conversion hooks, but its public language is still price-first. Borderline can keep the helpfulness while shifting the promise toward trust and problem-solving.</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>USA Fitness Equipment Depot</h3>
+              <span class="tag">Specification-driven</span>
+            </div>
+            <div>
+              <p class="quote">"Commercial Fitness Equipment. Without Compromise." with commercial-only focus, specification-driven selection, coordinated fulfillment and installation, and long-term support.</p>
+              <p class="note">This brand feels more facility-planning-oriented than pure bargain positioning. It presents specialist advice, planning, support, and facility references alongside new and pre-owned inventory.</p>
+              <div class="pills">
+                <span class="pill">Commercial only</span>
+                <span class="pill">Plan your facility</span>
+                <span class="pill">Long-term support</span>
+              </div>
+            </div>
+            <p class="takeaway">This is a stronger strategic competitor than a generic discount seller because it frames itself as a serious facility partner. Borderline should watch this lane closely.</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>SuperFitness</h3>
+              <span class="tag">Warehouse spectacle</span>
+            </div>
+            <div>
+              <p class="quote">"We Buy & Sell Gyms" with new and used commercial fitness equipment, buy/sell trade language, delivery services, and massive warehouse proof.</p>
+              <p class="note">Search results and public messaging emphasize scale, huge inventory, buying and selling gyms, and a 170,000 square foot showroom. The message is breadth, credibility, and availability.</p>
+              <div class="pills">
+                <span class="pill">170,000 sqft</span>
+                <span class="pill">We buy & sell gyms</span>
+                <span class="pill">Delivery</span>
+              </div>
+            </div>
+            <p class="takeaway">SuperFitness embodies the "big warehouse, big personality, big inventory" version of the category. Borderline can borrow the confidence without inheriting the same impersonal scale posture.</p>
+          </article>
+
+          <article class="competitor">
+            <div>
+              <h3>Commercial Fitness Concepts</h3>
+              <span class="tag">Legacy warehouse</span>
+            </div>
+            <div>
+              <p class="quote">"Your Ultimate Fitness Warehouse" with new equipment, pre-owned equipment, installation and service, testimonials, and videos.</p>
+              <p class="note">The site is older and more straightforward, but the positioning is familiar: warehouse inventory, equipment categories, basic proof sections, and service as an add-on capability.</p>
+              <div class="pills">
+                <span class="pill">Ultimate warehouse</span>
+                <span class="pill">Pre-owned</span>
+                <span class="pill">Installation & service</span>
+              </div>
+            </div>
+            <p class="takeaway">This is a useful example of legacy category language. It reinforces how common warehouse-first messaging is and how rarely the customer journey is centered.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="patterns">
+      <div class="page">
+        <div class="section-title">
+          <div class="kicker">Category patterns</div>
+          <div>
+            <h2>What everyone keeps repeating</h2>
+          </div>
+        </div>
+
+        <div class="pattern-grid">
+          <div class="pattern">
+            <span class="number">01 / Savings</span>
+            <h3>Price is the default hook.</h3>
+            <p class="muted">"Up to 70% off," wholesale pricing, better deals, and 50-70% marketplace savings show up repeatedly. Useful for lead capture, but easy to copy.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">02 / Inventory</span>
+            <h3>Warehouse proof is everywhere.</h3>
+            <p class="muted">Competitors prove legitimacy with rows of machines, square footage, searchable inventory, brand logos, and large category menus.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">03 / Condition</span>
+            <h3>Trust is framed as inspection.</h3>
+            <p class="muted">Inspected, cleaned, tested, remanufactured, certified pre-owned, warranty coverage, and refurbishment all work to reduce buyer risk.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">04 / Logistics</span>
+            <h3>Service becomes a menu.</h3>
+            <p class="muted">Delivery, installation, white glove setup, shipping, financing, buyback, appraisal, trade-in, and planning are common service proof points.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">05 / Discount</span>
+            <h3>Texas competitors are especially price-loud.</h3>
+            <p class="muted">CTX and other regional players validate the meeting feedback: "discount commercial gym equipment," percentage-off messaging, and bargain framing remain a dominant acquisition tactic.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">06 / Scale</span>
+            <h3>Big operators flex warehouse size and celebrity by proxy.</h3>
+            <p class="muted">Global Fitness and SuperFitness sell reassurance through scale, massive showrooms, remanufacturing capability, large lots, and broad inventory confidence.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="whitespace">
+      <div class="page">
+        <div class="section-title">
+          <div class="kicker">Strategic white space</div>
+          <div>
+            <h2>Where Borderline can sound different</h2>
+          </div>
+        </div>
+
+        <div class="recommendations">
+          <div class="red-panel">
+            <h2>Be the team that makes it happen.</h2>
+            <p style="margin-top: 18px;">Most competitors sell the machine. Borderline can sell what happens around the machine: the right equipment, the right timing, the right handoff, and a lot less friction for the customer.</p>
+          </div>
+
+          <div class="message-list">
+            <div class="message">
+              <b>Operator-side partner</b>
+              <p class="muted">Speak to gym owners as people trying to protect cash, timelines, member experience, and floor space.</p>
+            </div>
+            <div class="message">
+              <b>Honest equipment truth</b>
+              <p class="muted">Make condition transparency a brand behavior: what it is, what it is not, what it will take to move and use.</p>
+            </div>
+            <div class="message">
+              <b>Asset-light speed</b>
+              <p class="muted">Turn the 80% pre-move sales model into an ad idea: equipment should not sit when it can sell in place.</p>
+            </div>
+            <div class="message">
+              <b>Sin fronteras</b>
+              <p class="muted">Make the Houston/Mexico City relationship feel intentional: bilingual service, cross-border buyers, and a more fluid market.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="story-options">
+      <div class="page">
+        <div class="section-title">
+          <div class="kicker">Story options</div>
+          <div>
+            <h2>Ways to frame the underdog story</h2>
+          </div>
+        </div>
+
+        <div class="message-list">
+          <div class="message">
+            <b>Option 01: The builders</b>
+            <p class="muted">We are not the biggest name in the category, and that is part of the point. Borderline is building its place in the market by doing the hard parts well, staying close to the customer, and refusing to run the same playbook as everyone else.</p>
+          </div>
+          <div class="message">
+            <b>Option 02: Doing it our own way</b>
+            <p class="muted">The founders know how the category usually works. They have seen what larger players do, what legacy operators do, and what gets copied over and over. Borderline is taking what is useful, leaving what is not, and building a smarter path from the ground up.</p>
+          </div>
+          <div class="message">
+            <b>Option 03: New, but not naive</b>
+            <p class="muted">Borderline may be young, but it is not guessing. The advantage of being new is that the business is not locked into old habits, old systems, or old assumptions. It can move faster, stay closer to customers, and shape a different kind of company while the category still feels stale.</p>
+          </div>
+          <div class="message">
+            <b>Option 04: The scrappy specialist</b>
+            <p class="muted">The underdog story is not just that the company is smaller. It is that the founders are still close enough to the work to solve problems in real time, make decisions quickly, and care deeply about how the customer experiences the process.</p>
+          </div>
+          <div class="message">
+            <b>Option 05: Carving out a lane</b>
+            <p class="muted">Borderline is not trying to out-warehouse the warehouse brands. It is carving out its own lane by being more responsive, more resourceful, more honest about the process, and better at helping customers get from idea to finished gym.</p>
+          </div>
+          <div class="message">
+            <b>Short lines to test</b>
+            <p class="muted">A new kind of gym equipment partner. Built differently for gym owners. Not the biggest warehouse. The right team. Still building. Already trusted. We are carving out our place by doing the work the hard way, then making it easier for the customer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="creative">
+      <div class="page">
+        <div class="section-title">
+          <div class="kicker">Lead-gen creative</div>
+          <div>
+            <h2>Campaign angles worth testing</h2>
+          </div>
+        </div>
+
+        <div class="pattern-grid">
+          <div class="pattern">
+            <span class="number">Offer 01</span>
+            <h3>Send us the list. We'll tell you what moves.</h3>
+            <p class="muted">Lead form for sellers and gym owners: upload an equipment list/photos and receive a plain-English sell-through read. Differentiates against passive marketplaces.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">Offer 02</span>
+            <h3>Open faster with equipment that already exists.</h3>
+            <p class="muted">Buyer-facing campaign for new gyms, studios, and expansions. Focus on speed, budget protection, and commercial-grade availability.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">Offer 03</span>
+            <h3>Don't warehouse your problem.</h3>
+            <p class="muted">Seller-facing message tied to asset-light advantage. Good for liquidation, relocations, remodels, and operators replacing lines.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">Offer 04</span>
+            <h3>Commercial equipment across borders.</h3>
+            <p class="muted">Bilingual creative for Houston and Mexico buyers: English/Spanish versions with the same visual system and a clear WhatsApp/contact path.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screenshots">
+      <div class="page">
+        <div class="section-title">
+          <div class="kicker">Captured examples</div>
+          <div>
+            <h2>Competitor creative references</h2>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <figure>
+            <img src="competitor-messaging-assets/360-fitness-solutions.png" alt="360 Fitness Solutions website screenshot">
+            <figcaption>360 Fitness Solutions: discount and warehouse-led ecommerce language. Capture includes an email modal, which is itself a lead-gen tactic.</figcaption>
+          </figure>
+          <figure>
+            <img src="competitor-messaging-assets/primo-fitness.png" alt="Primo Fitness website screenshot">
+            <figcaption>Primo Fitness: broad #1/new-and-used provider positioning with shopping-oriented site structure.</figcaption>
+          </figure>
+          <figure>
+            <img src="competitor-messaging-assets/used-gym-equipment.png" alt="UsedGymEquipment.com website screenshot">
+            <figcaption>UsedGymEquipment.com: trusted supplier, wholesale pricing, fast delivery, expert support.</figcaption>
+          </figure>
+          <figure>
+            <img src="competitor-messaging-assets/bolt-preowned.png" alt="Bolt Pre-Owned website screenshot">
+            <figcaption>Bolt Pre-Owned: Houston warehouse, inspected/cleaned/tested, local pickup and shipping.</figcaption>
+          </figure>
+          <figure>
+            <img src="competitor-messaging-assets/pound4pound.png" alt="Pound4Pound Fitness Equipment website screenshot">
+            <figcaption>Pound4Pound: warehouse scale plus a more personal, consultative voice.</figcaption>
+          </figure>
+          <figure>
+            <img src="competitor-messaging-assets/pro-gym-supply.png" alt="Pro Gym Supply website screenshot">
+            <figcaption>Pro Gym Supply: "we know gym equipment," buy/sell/trade, honesty and efficiency messaging.</figcaption>
+          </figure>
+          <figure>
+            <img src="competitor-messaging-assets/carolina-fitness-equipment.png" alt="Carolina Fitness Equipment website screenshot">
+            <figcaption>Carolina Fitness Equipment: service ecosystem with consultation, planning, repair, financing, and customization.</figcaption>
+          </figure>
+          <figure>
+            <img src="competitor-messaging-assets/preownedgym-tradein.png" alt="PreOwnedGym.com website screenshot">
+            <figcaption>PreOwnedGym.com: marketplace framing, alerts, trade-in, appraisal, financing, and certified pre-owned.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="paid-social">
+      <div class="page">
+        <div class="section-title">
+          <div class="kicker">Paid and outside signals</div>
+          <div>
+            <h2>What to include in ad review</h2>
+          </div>
+        </div>
+
+        <div class="recommendations">
+          <div class="red-panel">
+            <h2>Meta confirms the lead-gen lane.</h2>
+            <p style="margin-top: 18px;">The cleanest active Meta Ad Library competitor hit is Bolt Fitness Supply. Their visible ad creative is direct and functional: "Outfit Your New Gym" with a "Get quote" CTA. That validates a quote/request-form path for Borderline, but it also shows how generic the current category creative can feel.</p>
+          </div>
+
+          <div class="message-list">
+            <div class="message">
+              <b>Use Meta Ad Library as a monitoring source</b>
+              <p class="muted">Searches for exact competitor names should be reviewed before launch. Keyword results can be noisy and include unrelated advertisers, so only treat ads as competitor evidence when the advertiser name matches the brand.</p>
+            </div>
+            <div class="message">
+              <b>Include Google search results and SEO copy</b>
+              <p class="muted">Title tags and meta descriptions reveal the most repeated hooks: 70% savings, wholesale pricing, commercial-grade equipment, warehouse scale, delivery, and expert support.</p>
+            </div>
+            <div class="message">
+              <b>Review Facebook/Instagram pages manually</b>
+              <p class="muted">Competitors often use organic posts for inventory drops, warehouse walk-throughs, deal announcements, and video demos. These are useful creative references even when paid ads are not active.</p>
+            </div>
+            <div class="message">
+              <b>Review reputation platforms</b>
+              <p class="muted">Google Business, Facebook reviews, Yelp, and BBB-style pages can surface the emotional language customers use: responsive, trustworthy, delivery issues, condition surprises, communication, and service after sale.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery" style="margin-top: 34px;">
+          <figure>
+            <img src="competitor-messaging-assets/meta/bolt-fitness-supply.png" alt="Meta Ad Library screenshot for Bolt Fitness Supply">
+            <figcaption>Bolt Fitness Supply: active Meta ads found by keyword search. Visible creative uses "Outfit Your New Gym" and a "Get quote" CTA.</figcaption>
+          </figure>
+          <figure>
+            <img src="competitor-messaging-assets/meta/borderline-fitness-supply.png" alt="Meta Ad Library screenshot for Borderline Fitness Supply">
+            <figcaption>Borderline Fitness Supply: no active exact-name ads found in this Meta Ad Library keyword review.</figcaption>
+          </figure>
+          <figure>
+            <img src="competitor-messaging-assets/meta/360-fitness-solutions.png" alt="Meta Ad Library screenshot for 360 Fitness Solutions keyword search">
+            <figcaption>360 Fitness Solutions keyword search: results were noisy and did not show a clearly matched competitor ad in the visible first screen.</figcaption>
+          </figure>
+          <figure>
+            <img src="competitor-messaging-assets/meta/pro-gym-supply.png" alt="Meta Ad Library screenshot for Pro Gym Supply keyword search">
+            <figcaption>Pro Gym Supply keyword search: active results appeared unrelated in the visible first screen, so treat as a monitoring link, not competitor proof.</figcaption>
+          </figure>
+        </div>
+
+        <div class="section-title" style="margin-top: 64px;">
+          <div class="kicker">LinkedIn and channels</div>
+          <div>
+            <h2>Where competitors are showing up</h2>
+          </div>
+        </div>
+
+        <div class="pattern-grid">
+          <div class="pattern">
+            <span class="number">CTX on LinkedIn</span>
+            <h3>Equipment demos, warranty reassurance, and customer stories.</h3>
+            <p class="muted">CTX has an active LinkedIn company presence with hundreds of followers, posting equipment demos, crew/process content, customer gym stories, warranty language, and consultation-style updates. That makes their brand feel more alive than a static ecommerce site alone.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">Global on LinkedIn</span>
+            <h3>Corporate scale and remanufactured authority.</h3>
+            <p class="muted">Global Fitness maintains a company page that reinforces its site positioning: worldwide leader, pre-owned and factory remanufactured equipment, gym packages, and wholesale direct pricing. LinkedIn here is more credibility infrastructure than personality media.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">Commercial Fitness Concepts</span>
+            <h3>Old-school social mix: Facebook, YouTube, Instagram.</h3>
+            <p class="muted">Their official site explicitly routes visitors to Facebook, YouTube, and Instagram and highlights News, Testimonials, and Videos as content buckets. That suggests a legacy content pattern built around trust proof and arrivals rather than polished modern demand generation.</p>
+          </div>
+          <div class="pattern">
+            <span class="number">USA Depot / SuperFitness</span>
+            <h3>Site and search are clearer than LinkedIn.</h3>
+            <p class="muted">In quick review, official company-level LinkedIn presence was not as visible as CTX or Global. Their public marketing gravity appears to come more from website SEO, showroom proof, reviews, and product-led search traffic than from a strong LinkedIn company brand.</p>
+          </div>
+        </div>
+
+        <div class="gallery" style="margin-top: 34px;">
+          <figure>
+            <img src="competitor-messaging-assets/linkedin/ctx-dillon-ivey-linkedin.png" alt="LinkedIn screenshot showing Dillon Ivey of CTX Home Gyms">
+            <figcaption>LinkedIn reference: CTX founder Dillon Ivey profile. Even with the LinkedIn sign-in wall, the page still shows the brand identity, visible activity, and proof that CTX is using LinkedIn as part of its public presence.</figcaption>
+          </figure>
+          <figure>
+            <img src="competitor-messaging-assets/linkedin/global-fitness-linkedin.png" alt="LinkedIn screenshot showing Global Fitness Inc company page">
+            <figcaption>LinkedIn reference: Global Fitness Inc company page. Visible details reinforce scale and category authority, including follower count, founding year, and specialities tied to remanufactured and used equipment.</figcaption>
+          </figure>
+        </div>
+
+        <div class="message-list" style="margin-top: 34px;">
+          <div class="message">
+            <b>Borderline opportunity on channels</b>
+            <p class="muted">There is room to build a clearer channel stack: LinkedIn for legitimacy and sourcing relationships, Instagram for proof and personality, Google review capture for conversion reassurance, and SMS/email automation for follow-up. Competitors are present in pieces; few appear cohesive across all of them.</p>
+          </div>
+          <div class="message">
+            <b>Sourcing signal</b>
+            <p class="muted">LinkedIn matters here not only for buyers, but for reps, installers, acquisition managers, management companies, and commercial real-estate or operations contacts who may influence lot sourcing. That makes it strategically different from purely consumer-facing social channels.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="page">
+        <div class="section-title">
+          <div class="kicker">Sources</div>
+          <div>
+            <h2>Research links</h2>
+          </div>
+        </div>
+
+        <ul class="source-list">
+          <li><a href="https://borderlinesupply.com/">Borderline Supply</a> - current public site and internal discovery brief.</li>
+          <li><a href="https://360fitnesssolutions.com/">360 Fitness Solutions</a> - home page metadata and public messaging.</li>
+          <li><a href="https://primofitnessusa.com/">Primo Fitness</a> - home page title, description, and public messaging.</li>
+          <li><a href="https://www.usedgymequipment.com/">UsedGymEquipment.com</a> - home page metadata and schema messaging.</li>
+          <li><a href="https://pre-owned.boltfitnesssupply.com/">Bolt Pre-Owned</a> - pre-owned store metadata and public messaging.</li>
+          <li><a href="https://pound4poundfitnessequipment.com/about-us/">Pound4Pound Fitness Equipment</a> - about page claims and positioning.</li>
+          <li><a href="https://progymsupply.com/about-us/">Pro Gym Supply</a> - about page claims and category positioning.</li>
+          <li><a href="https://carolinafitnessequipment.com/">Carolina Fitness Equipment</a> - home page services and product messaging.</li>
+          <li><a href="https://preownedgym.com/browse/">PreOwnedGym.com</a> - marketplace, certified pre-owned, trade-in and financing language.</li>
+          <li><a href="https://www.globalfitness.com/">Global Fitness</a> - remanufactured/new/used positioning, testimonials, custom equipment, and gym-owner resources.</li>
+          <li><a href="https://ctxhomegyms.com/">CTX Home Gyms</a> - discount commercial positioning, bundles, delivery, installation, maintenance, and consultation hooks.</li>
+          <li><a href="https://fitnessequipmentdepot.net/">USA Fitness Equipment Depot</a> - specification-driven commercial messaging, planning, fulfillment, and long-term support.</li>
+          <li><a href="https://superfitnessgymequipment.com/">SuperFitness Gym Equipment</a> - new/used equipment, buy-sell language, delivery, and large warehouse proof.</li>
+          <li><a href="https://www.commercialfitnessconcepts.com/">Commercial Fitness Concepts</a> - legacy warehouse language, pre-owned inventory, installation, and service.</li>
+          <li><a href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=US&amp;q=Bolt%20Fitness%20Supply&amp;search_type=keyword_unordered">Meta Ad Library: Bolt Fitness Supply</a> - active ads visible in review screen.</li>
+          <li><a href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=US&amp;q=Borderline%20Fitness%20Supply&amp;search_type=keyword_unordered">Meta Ad Library: Borderline Fitness Supply</a> - no active exact-name results visible in review screen.</li>
+          <li><a href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=US&amp;q=360%20Fitness%20Solutions&amp;search_type=keyword_unordered">Meta Ad Library: 360 Fitness Solutions</a> - monitoring link; visible keyword results were noisy.</li>
+          <li><a href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=US&amp;q=Pro%20Gym%20Supply&amp;search_type=keyword_unordered">Meta Ad Library: Pro Gym Supply</a> - monitoring link; visible keyword results were noisy.</li>
+          <li><a href="https://www.linkedin.com/company/ctx-home-gyms">CTX Home Gyms on LinkedIn</a> - active company page with product demos, customer stories, and process/warranty messaging.</li>
+          <li><a href="https://www.linkedin.com/company/global-fitness-inc.">Global Fitness on LinkedIn</a> - company page reinforcing worldwide remanufactured/pre-owned scale and wholesale positioning.</li>
+          <li>Internal meeting transcript provided by client on April 16, 2026 - used for field notes, workflow gaps, customer language, and client-reported competitor context.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page footer-note">
+    Prepared for Borderline Supply lead-generation planning. Screenshots captured April 15, 2026. Competitor messaging should be rechecked before media launch because ecommerce home pages, popups, and promotional claims can change frequently.
+  </footer>
+</body>
+</html>
